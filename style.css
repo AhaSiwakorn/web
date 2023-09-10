@@ -1,0 +1,572 @@
+*{
+    font-family: 'Kanit', sans-serif;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg: black;
+    --ligth: #fff;
+    --green90: #a167fd;
+    --green50: #824cff;
+    --green25: #2C73D2;
+    --green5: #5117e3;
+    --lowligth: #cdcdcd;
+    --lowbg: rgb(32, 32, 32);
+}
+
+body{
+    background: url(https://img.pikbest.com/backgrounds/20220119/aurora-gradient-purple_6246027.jpg!sw800);
+    background-size: cover;
+    background-position: right;
+}
+
+/* อันนี้ Navbar ข้าง */
+.sidebar{
+    position: fixed;
+    width: 80px;
+    height: 100vh;
+    background: var(--ligth);
+    transition: 0.5s;
+    padding-left: 10px;
+    overflow: hidden;
+    border-radius: 0 20px 0 0;
+    z-index: 2;
+    top: 0px;
+}
+
+.sidebar.active{
+    width: 350px;
+    border-right: 8px var(--green50) solid;
+}
+
+.sidebar ul{
+    position: relative;
+    height: 100vh;
+}
+
+.sidebar ul li{
+    position: relative;
+    list-style: none;
+}
+
+.sidebar ul li.active{
+    background: var(--green50);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 0 5px var(--green50);
+    background: transparent;
+}
+
+.sidebar ul li.active::after{
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 5px -5px 0 5px var(--green50);
+    background: transparent;
+}
+
+.sidebar ul li.logo{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: 75px;
+}
+
+.sidebar ul li.logo .icon{
+    font-size: 2em;
+    color: var(--lowbg);
+}
+
+.sidebar ul li.logo .text{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--lowbg);
+}
+
+.sidebar ul li a{
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar ul li a .icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    padding-left: 10px;
+    height: 70px;
+    font-size: 1.5rem;
+    color: var(--green90);
+    transition: 0.5s;
+}
+
+.sidebar ul li a .text{
+    position: relative;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: var(--lowbg);
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.sidebar ul li.active a .icon{
+    color: var(--ligth);
+}
+
+.sidebar ul li.active a .text{
+    color: var(--ligth);
+}
+
+.sidebar ul li:hover a .icon , .sidebar ul li:hover a .text{
+    color: var(--green50);
+}
+
+.sidebar ul li.active a .icon::before{
+    content: '';
+    position: absolute;
+    inset: 5px;
+    width: 60px;
+    background: transparent;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.sidebar ul li:hover.active a .icon::before{
+    background: var(--green5);
+}
+
+.footside{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.menubutton{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--green5);
+    z-index: 1000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+}
+
+.menubutton::before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: var(--ligth);
+    transform: translateY(-9px);
+    transition: 0.5s;
+    box-shadow: 0 9px 0 var(--ligth);
+}
+
+.menubutton::after{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 3px;
+    background: var(--ligth);
+    transform: translateY(9px);
+    transition: 0.5s;
+}
+
+.menubutton.active::before{
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0 0 0 var(--ligth);
+}
+
+.menubutton.active::after{
+    transform: translateY(0px) rotate(-45deg);
+}
+/* อันนี้ Navbar ข้าง */
+
+/* Banner เลื่อน */
+.max{
+    margin: 80px 100px 80px 180px;
+}
+
+.container{
+    position: relative;
+    /* background: var(--bg); */
+    /* margin-left: 200px;
+    padding: 100px; */
+    overflow: hidden;
+    width: 1200px;
+    height: 600px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.tabs input{
+    visibility: hidden;
+    display: none;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.162);
+    border-radius: 10px;
+}
+
+.buttons label{
+    width: 20px;
+    height: 20px;
+    background: var(--ligth);
+    opacity: 0.5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+.tabs input:nth-child(1):checked ~ .buttons label:nth-child(1),
+.tabs input:nth-child(2):checked ~ .buttons label:nth-child(2),
+.tabs input:nth-child(3):checked ~ .buttons label:nth-child(3)
+{
+    opacity: 1;
+    width: 50px;
+}
+
+.content{
+    position: relative;
+    width: 300vw;
+    display: flex;
+    transition: 0.5s;
+}
+
+.content .box{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    top: -40px;
+    left: -40px;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    padding: 40px;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* .content .box:nth-child(1)
+{
+    background: url(https://static.cdntap.com/tap-assets-prod/wp-content/uploads/sites/25/2021/05/learn14.png);
+}
+.content .box:nth-child(2)
+{
+    background: url(https://static.cdntap.com/tap-assets-prod/wp-content/uploads/sites/25/2021/05/learn14.png);
+}
+.content .box:nth-child(3)
+{
+    background: url(https://static.cdntap.com/tap-assets-prod/wp-content/uploads/sites/25/2021/05/learn14.png);
+} */
+
+.tabs input:nth-child(1):checked ~ .content {
+    left: 0;
+}
+.tabs input:nth-child(2):checked ~ .content {
+    left: -100vw;
+}
+.tabs input:nth-child(3):checked ~ .content {
+    left: -200vw;
+}
+/* Banner เลื่อน */
+
+/* ช่วงเนื้อหากลาง */
+.min{
+    background: var(--lowligth);
+    height: 120vh;
+    padding: 20px;
+}
+
+.inmin{
+    background-color: rgb(235, 235, 235);
+    margin-left: 80px;
+    height: 475px;
+    padding-top: 8px;
+    margin-top: 30px;
+}
+
+.gid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 70px;
+    text-align: center;
+}
+
+.textss{
+    color: var(--lowbg);
+    margin: 20px 20px 20px 100px;
+}
+
+.show{
+    width: 350px;
+    height: 330px;
+    padding: 20px;
+    background: var(--ligth);
+    border-radius: 12px;
+    color: var(--lowbg);
+}
+
+.show:hover{
+    box-shadow: 5px 5px 0 0  var(--bg);
+    transition: 0.7s;
+}
+
+.inshow{
+    width: 350px;
+    height: 330px;
+    background: var(--green90);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.inshow:hover{
+    margin-top: 10px;
+    transition: 0.7s;
+    box-shadow: 5px 5px 0 0  var(--bg);
+}
+
+.buttonshow{
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    border: 2px solid var(--green50);
+    color: var(--lowbg);
+    font-size: 1rem;
+}
+
+.buttonshow:hover{
+    background: var(--green90);
+    border: 2px solid var(--green90);
+    color: var(--ligth);
+    transition: 0.5s;
+    box-shadow: 0 3px 0 0  var(--bg);
+    font-size: 1.2rem;
+}
+
+.gid2{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.img{
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.atibai{
+    background: rgb(250, 243, 255);
+    width: 100%;
+    height: 320px;
+    border-radius: 8px;
+    padding: 30px 50px;
+}
+
+.inmin2{
+    background-color: rgb(235, 235, 235);
+    margin-left: 80px;
+    height: 370px;
+    margin-top: 30px;
+}
+/* ช่วงเนื้อหากลาง */
+
+/* footer */
+
+.footer{
+    width: 100%;
+    height: 50px;
+    background-color: var(--ligth);
+    text-align: center;
+    padding: 20px;
+}
+
+/* footer */
+
+
+
+
+
+
+
+@media(max-width: 768px){
+    /* Navbar ด้านข้าง */
+    .sidebar{
+        width: 0px;
+        background: transparent;
+    }
+
+    .sidebar.active{
+        display: block;
+        transition: 0.5s;
+        background: var(--ligth);
+    }
+
+    .sidebar{
+        padding-left: 0;
+    }
+
+    .sidebar.active{
+        padding-left: 10px;
+    }
+
+    .sidebar ul li.active::before{
+        display: block;
+    }
+    /* Navbar ด้านข้าง */
+
+    /* ตัวหน้าเลื่อน */
+
+    .content .box{
+        left: 30px;
+    }
+
+    .container{
+        color: white;
+        /* margin-left: 30px; */
+        margin: 90px 5px;
+        padding: 0 20px;
+        width: 490px;
+        height: 40vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .content .box{
+        height: 0;
+    }
+
+    .max{
+        margin: 40px 0;
+    }
+
+    .tabs input:nth-child(1):checked ~ .content {
+        left: -20vw;
+    }
+    .tabs input:nth-child(2):checked ~ .content {
+        left: -120vw;
+    }
+    .tabs input:nth-child(3):checked ~ .content {
+        left: -220vw;
+    }
+
+    .buttons{
+        bottom: 10px;
+        background: rgba(0, 0, 0, 0.162);
+        border-radius: 10px;
+    }
+
+    div.box img{
+        width: 650px;
+        height: auto;
+    }
+
+    /* ตัวหน้าเลื่อน */
+
+    /* ตัวเนื้อหา */
+    .min{
+        height: 255vh;
+    }
+
+    .inmin{
+        background-color: rgb(235, 235, 235);
+        margin-left: 0;
+        height: 1275px;
+    }
+
+    .gid{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-left: 45px;
+    }
+
+    .textss{
+        color: var(--lowbg);
+        margin: 20px 20px 0 120px;
+    }
+    
+    .inshow{
+        margin-top: 50px;
+    }
+
+    .inshow:hover{
+        margin-top: 50px;
+    }
+
+    .inmin2{
+        background-color: rgb(235, 235, 235);
+        margin-left: 0;
+        height: 620px;
+        padding: 10px;
+    }
+
+    .gid2{
+        grid-template-columns: 1.5fr;
+        gap: 10px;
+    }
+    
+    /* ตัวเนื้อหา */
+
+    /* footer */
+
+    .footer{
+        position: relative;
+        width: 100%;
+        height: 50px;
+        background-color: var(--ligth);
+        text-align: center;
+        padding: 20px;
+        bottom: 0px;
+    }
+
+    .atibai{
+        text-align: center;
+    }
+    /* footer */
+    
+  }
